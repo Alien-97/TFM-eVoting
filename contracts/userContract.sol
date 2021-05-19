@@ -20,6 +20,7 @@ contract UserContract {
         string[] candidatesIds;
         string[] votersIds;
         string[] allowedVotersIds;
+        mapping(string => bool) census;
         mapping(string => bool) allowedVotersIds;
         mapping(string => uint32) votes; // Candidate ID => number of votes
         mapping(string => bool) isAdmin;
@@ -68,8 +69,8 @@ contract UserContract {
     }
     
     function vote(string electionName, string candidateId) public {
-        require(users[msg.sender].roles.includes(Voter), "Unauthorized");
-        require(elections[electionName].allowedVotersIds.allowedVotersIds[VotersIds], "Not allowed");
+        require(users[msg.sender].census[voterIds] == true, "Unauthorized");
+        require(elections[electionName].allowedVotersIds[ID] === true, "Not allowed");
         
         elections[electionName].votes[candidateId] = elections[electionName].votes[candidateId] + 1;
     }
