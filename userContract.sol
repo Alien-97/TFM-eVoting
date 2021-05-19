@@ -22,7 +22,7 @@ contract UserContract {
         string[] allowedVotersIds;
         mapping(string => bool) allowedVotersIds;
         mapping(string => uint32) votes; // Candidate ID => number of votes
-        mapping(string => bool) isAdmin
+        mapping(string => bool) isAdmin;
     }
     
     // Owner is always Admin
@@ -48,13 +48,13 @@ contract UserContract {
     
     function setRoles (address userAddress, Rol[] roles) public {
         // Is owner or admin
-        require(msg.sender === _owner || users[msg.sender].roles.includes(Admin), "Unauthorized");
+        require(msg.sender === _owner || users[msg.sender].isAdmin[msg.sender] === true, "Unauthorized");
         
         users[userAddress].roles = roles;
     }
     
     function createElection(string electionName, string[] candidatesIds, string[] votersIds) public {
-        require(msg.sender === _owner || users[msg.sender].roles.isAdmin[msg.sender] === true (Admin), "Unauthorized");
+        require(msg.sender === _owner || users[msg.sender].isAdmin[msg.sender] === true, "Unauthorized");
         require(!elections[electionName], "Election already exists");
         
         elections[electionName] = Election{
@@ -69,7 +69,7 @@ contract UserContract {
     
     function vote(string electionName, string candidateId) public {
         require(users[msg.sender].roles.includes(Voter), "Unauthorized");
-        require(elections[electionName].allowedVotersIds.includes(users[msg.sender].ID), "Not allowed");
+        require(elections[electionName].allowedVotersIds.allowedVotersIds[Voter], "Not allowed");
         
         elections[electionName].votes[candidateId] = elections[electionName].votes[candidateId] + 1;
     }
