@@ -69,7 +69,7 @@ contract UserContract {
     
     function vote(string electionName, string candidateId) public {
         require(users[msg.sender].roles.includes(Voter), "Unauthorized");
-        require(elections[electionName].allowedVotersIds.allowedVotersIds[Voter], "Not allowed");
+        require(elections[electionName].allowedVotersIds.allowedVotersIds[VotersIds], "Not allowed");
         
         elections[electionName].votes[candidateId] = elections[electionName].votes[candidateId] + 1;
     }
