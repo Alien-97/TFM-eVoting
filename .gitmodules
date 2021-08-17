@@ -1,3 +1,6 @@
 [submodule "AppVotacion"]
 	path = AppVotacion
 	url = https://github.com/Alien-97/AppVotacion
+[submodule "client"]
+	path = client
+	url = https://github.com/Alien-97/client
